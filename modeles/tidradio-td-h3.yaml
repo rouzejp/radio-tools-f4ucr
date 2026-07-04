@@ -1,0 +1,50 @@
+# Mapping format CSV — TIDRADIO TD-H3 (export CHIRP)
+modele: "tidradio-td-h3"
+nom: "TIDRADIO TD-H3"
+delimiteur: ","
+encoding: "utf-8"
+has_header: true
+
+# Format CSV CHIRP pour TD-H3 :
+# Location,Name,Frequency,Duplex,Offset,Tone,rToneFreq,cToneFreq,
+# DtcsCode,DtcsPolarity,RxDtcsCode,CrossMode,Mode,TStep,Skip,
+# Power,Comment,URCALL,RPT1CALL,RPT2CALL,DVCODE
+
+colonnes:
+  - {index: 0, nom: "Location", type: "ignore"}
+  - {index: 1, nom: "NAME", type: "string", cible: "nom"}
+  - {index: 2, nom: "FREQ", type: "mhz", cible: "freq"}
+  - {index: 3, nom: "DUPLEX", type: "string", cible: "duplex"}
+  - {index: 4, nom: "OFFSET", type: "mhz", cible: "offset"}
+  - {index: 5, nom: "TONE", type: "string", cible: "tone_mode"}
+  - {index: 6, nom: "rToneFreq", type: "hz_optional", cible: "rx_tone"}
+  - {index: 7, nom: "cToneFreq", type: "hz_optional", cible: "tx_tone"}
+  - {index: 11, nom: "CrossMode", type: "string", cible: "cross_mode"}
+  - {index: 12, nom: "Mode", type: "string", cible: "mode"}
+  - {index: 14, nom: "Skip", type: "string", cible: "skip"}
+  - {index: 15, nom: "Power", type: "string", cible: "power"}
+  - {index: 16, nom: "Comment", type: "string", cible: "notes"}
+
+defauts:
+  source: "tidradio-td-h3"
+  skip: ""
+
+transformations:
+  mode:
+    "FM": "FM"
+    "NFM": "NFM"
+    "AM": "AM"
+  tone_mode:
+    "": "none"
+    "Tone": "tone"
+    "TSQL": "tsql"
+    "DTCS": "dtcs"
+    "Cross": "cross"
+  duplex:
+    "": "simplex"
+    "off": "simplex"
+    "+": "plus"
+    "-": "minus"
+  skip:
+    "": ""
+    "S": "skip"

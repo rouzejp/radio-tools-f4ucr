@@ -1,0 +1,45 @@
+# Mapping format CSV — TIDRADIO TD-H9 Ham
+modele: "tidradio-td-h9"
+nom: "TIDRADIO TD-H9 Ham"
+delimiteur: ","
+encoding: "utf-8-sig"
+has_header: true
+
+# Colonnes du CSV TD-H9 (export logiciel):
+# Fréq RX [MHz],Fréq TX [MHz],RX CTCSS/DCS,TX CTCSS/DCS,Puissance,
+# Bande,Brouilleur,PTT ID,Saut Fréq,Verr Occupé,Scan,Mode RX,Nom
+
+colonnes:
+  # RX / TX freq : calculées depuis freq + duplex + offset → script dédié
+  - {index: 0, nom: "Fréq RX [MHz]", type: "mhz", cible: "freq"}
+  - {index: 1, nom: "Fréq TX [MHz]", type: "mhz_nocalc", cible: "freq_tx"}
+  - {index: 12, nom: "Nom", type: "nom_extended", cible: "nom"}
+
+defauts:
+  source: "tidradio-td-h9"
+  brouilleur: "0"
+  ptt_id: "Arrêt"
+  verr_occupe: "OFF"
+  scan: "ON"
+
+transformations:
+  mode:
+    "FM": "FM"
+    "NFM": "NFM"
+    "AM": "AM"
+  power:
+    "5.0W": "Haut"
+    "2.0W": "Bas"
+    "": "Bas"
+  bande_passante:
+    "FM": "Large"
+    "NFM": "Étroit"
+    "AM": "Large"
+  skip:
+    "": "OFF"
+    "skip": "ON"
+  tone_mode:
+    "none": "OFF"
+    "tone": "Tone"
+    "tsql": "TSQL"
+    "dtcs": "DTCS"

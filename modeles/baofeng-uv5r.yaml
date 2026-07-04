@@ -1,0 +1,41 @@
+# Mapping format CSV — Baofeng UV-5R (CHIRP / CSV export)
+modele: "baofeng-uv5r"
+nom: "Baofeng UV-5R"
+delimiteur: ","
+encoding: "utf-8"
+has_header: true
+
+# Format CSV CHIRP typique :
+# Location,Name,Frequency,Tune,Duplex,Offset,Mode,Tone,rToneFreq,cToneFreq,DtcsCode,DtcsPolarity,RxDtcsCode,CrossMode,ModeStep,Step,Split,Air,Bank,Comment
+
+colonnes:
+  - {index: 0, nom: "CH", type: "ignore"}
+  - {index: 2, nom: "FREQ", type: "mhz", cible: "freq"}
+  - {index: 1, nom: "NAME", type: "string", cible: "nom"}
+  - {index: 4, nom: "DUPLEX", type: "string", cible: "duplex"}
+  - {index: 5, nom: "OFFSET", type: "mhz", cible: "offset"}
+  - {index: 6, nom: "MODE", type: "string", cible: "mode"}
+  - {index: 7, nom: "TONE", type: "string", cible: "tone_mode"}
+  - {index: 8, nom: "RX_CTCSS", type: "hz_optional", cible: "rx_tone"}
+  - {index: 9, nom: "TX_CTCSS", type: "hz_optional", cible: "tx_tone"}
+  - {index: 14, nom: "STEP", type: "float", cible: "step"}
+  - {index: 19, nom: "COMMENT", type: "string", cible: "notes"}
+
+# Champs fixes appliqués à toutes les notes importées via ce modèle
+defauts:
+  bande: "2m"  # défaut, surchargeable
+  source: "baofeng-uv5r"
+  power: "high"
+
+# Transformation des valeurs
+transformations:
+  mode:
+    "FM": "FM"
+    "NFM": "NFM"
+    "AM": "AM"
+  tone_mode:
+    "": "none"
+    "Tone": "tone"
+    "TSQL": "tsql"
+    "DTCS": "dtcs"
+    "Cross": "cross"
