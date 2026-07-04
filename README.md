@@ -134,3 +134,12 @@ Projet personnel — librement réutilisable et adaptable.
 ## Auteur
 
 **F4UCR** (Jean-Paul Rouzé) — radioamateur, indicatif F4UCR.
+
+## 📊 Statistiques
+
+Les pages de ce projet (article, documentation) sont suivies via [GoatCounter](https://stats.rouze.eu) — analytics léger, auto-hébergé, respectueux de la vie privée (pas de tracking cross-site, pas de cookie).
+
+- **Tableau de bord public :** [stats.rouze.eu](https://stats.rouze.eu)
+- **Login :** `jean-paul@rouze.eu` (mot de passe à demander à F4UCR)
+
+Le snippet de tracking est injecté automatiquement sur l'ensemble du site [rouze.eu](https://rouze.eu) via WordPress.
